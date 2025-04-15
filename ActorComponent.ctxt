@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=ActorComponent
+comment1.params=
+comment1.target=void\ act()
+comment10.params=
+comment10.target=boolean\ isValid()
+comment2.params=component
+comment2.target=void\ addComponent(Component)
+comment3.params=type
+comment3.target=Component\ getComponent(java.lang.Class)
+comment4.params=interfaceType
+comment4.target=java.lang.Object\ getComponentIfImplements(java.lang.Class)
+comment5.params=type
+comment5.target=void\ removeComponent(java.lang.Class)
+comment6.params=
+comment6.target=void\ removeComponents()
+comment7.params=
+comment7.target=void\ destroy()
+comment8.params=
+comment8.target=MainWorld\ getCurrentWorld()
+comment9.params=
+comment9.target=double\ getDeltaTime()
+numComments=11

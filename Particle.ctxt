@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Particle
+comment1.params=image\ duration
+comment1.target=Particle(greenfoot.GreenfootImage,\ float)
+comment2.params=images\ duration\ speed
+comment2.target=Particle(greenfoot.GreenfootImage[],\ float,\ float)
+comment3.params=
+comment3.target=void\ act()
+numComments=4

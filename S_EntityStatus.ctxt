@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=S_EntityStatus
+comment1.params=
+comment1.target=S_EntityStatus()
+comment2.params=maxHP\ attack\ defense\ critRate\ critDamage
+comment2.target=S_EntityStatus(int,\ int,\ int,\ float,\ float)
+comment3.params=isImmortal
+comment3.target=S_EntityStatus(boolean)
+comment4.params=maxHP\ attack\ defense\ critRate\ critDamage\ isImmortal
+comment4.target=S_EntityStatus(int,\ int,\ int,\ float,\ float,\ boolean)
+numComments=5

@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=FollowCamera
+comment1.params=target
+comment1.target=FollowCamera(ActorBase)
+comment2.params=target\ offsetX\ offsetY
+comment2.target=FollowCamera(ActorBase,\ float,\ float)
+comment3.params=target\ offset
+comment3.target=FollowCamera(ActorBase,\ Vector2D)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ move()
+comment6.params=target
+comment6.target=void\ setTarget(ActorBase)
+comment7.params=offsetX\ offsetY
+comment7.target=void\ setOffset(float,\ float)
+comment8.params=offset
+comment8.target=void\ setOffset(Vector2D)
+comment9.params=lerp
+comment9.target=void\ setLerp(float)
+numComments=10

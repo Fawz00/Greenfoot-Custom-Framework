@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=C_Animated
+comment1.params=
+comment1.target=C_Animated()
+comment10.params=
+comment10.target=float\ getAnimationSpeed()
+comment2.params=images\ mirror\ speed
+comment2.target=C_Animated(greenfoot.GreenfootImage[],\ boolean,\ float)
+comment3.params=images
+comment3.target=void\ setAnimation(greenfoot.GreenfootImage[])
+comment4.params=
+comment4.target=void\ mirrorAnimation()
+comment5.params=images
+comment5.target=void\ mirrorAnimation(greenfoot.GreenfootImage[])
+comment6.params=speed
+comment6.target=void\ setAnimationSpeed(float)
+comment7.params=
+comment7.target=void\ start()
+comment8.params=
+comment8.target=void\ update()
+comment9.params=animationFPS
+comment9.target=void\ applyAnimation(float)
+numComments=11

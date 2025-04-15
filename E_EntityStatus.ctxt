@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=E_EntityStatus
+comment1.params=source\ damage\ isCritical
+comment1.target=void\ onDamaged(ActorComponent,\ int,\ boolean)
+comment2.params=source
+comment2.target=void\ onHit(ActorComponent)
+comment3.params=source\ target\ damage
+comment3.target=void\ onCritHit(ActorComponent,\ ActorComponent,\ int)
+comment4.params=source\ amount
+comment4.target=void\ onHeal(ActorComponent,\ int)
+comment5.params=source\ deathType
+comment5.target=void\ onDeath(ActorComponent,\ Enumerations.DeathType)
+comment6.params=source
+comment6.target=void\ onRevive(ActorComponent)
+numComments=7

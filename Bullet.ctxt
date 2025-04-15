@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Bullet
+comment1.params=
+comment1.target=Bullet()
+comment2.params=e
+comment2.target=void\ onEvent(S_GameEvent)
+comment3.params=
+comment3.target=void\ act()
+numComments=4

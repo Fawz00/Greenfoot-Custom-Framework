@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=S_GameEvent
+comment1.params=event\ source\ data
+comment1.target=S_GameEvent(Enumerations.Event,\ ActorComponent,\ java.lang.Object)
+comment2.params=
+comment2.target=Enumerations.Event\ getEvent()
+comment3.params=
+comment3.target=ActorComponent\ getSource()
+comment4.params=
+comment4.target=java.lang.Object\ getData()
+numComments=5

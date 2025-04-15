@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=ActorBase
+comment1.params=
+comment1.target=ActorBase()
+comment2.params=position
+comment2.target=ActorBase(Vector2D)
+comment3.params=position\ rotation\ scale
+comment3.target=ActorBase(Vector2D,\ float,\ Vector2D)
+comment4.params=world
+comment4.target=void\ addedToWorld(greenfoot.World)
+comment5.params=
+comment5.target=void\ act()
+numComments=6
