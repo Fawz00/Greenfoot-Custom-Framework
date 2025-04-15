@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=S_TarrainBlock
-comment1.params=textureIndex\ identifier
-comment1.target=S_TarrainBlock(int[],\ java.lang.String)
-comment2.params=textureIndex\ identifier\ solid
-comment2.target=S_TarrainBlock(int[],\ java.lang.String,\ boolean)
-numComments=3

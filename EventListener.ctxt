@@ -1,5 +1,0 @@
-#BlueJ class context
-comment0.target=EventListener
-comment1.params=event
-comment1.target=void\ onEvent(S_GameEvent)
-numComments=2

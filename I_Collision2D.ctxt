@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=I_Collision2D
-comment1.params=location
-comment1.target=boolean\ detectWorldCollision(Vector2D)
-comment2.params=
-comment2.target=boolean\ detectWorldCollision()
-numComments=3
