@@ -20,12 +20,10 @@ public class Transform2D {
         rotation = (float) Math.toDegrees(Math.atan2(direction.y, direction.x));
     }
 
-    public Transform2D add(Transform2D other) {
-        return new Transform2D(
-            this.location.add(other.location),
-            this.rotation + other.rotation,
-            this.scale.add(other.scale)
-        );
+    public void add(Transform2D other) {
+        this.location = this.location.add(other.location);
+        this.rotation += other.rotation;
+        this.scale = this.scale.add(other.scale);
     }
 
     public Vector2D getForward() {

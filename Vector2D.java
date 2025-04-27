@@ -17,16 +17,16 @@ public class Vector2D {
         return "(" + x + ", " + y + ")";
     }
 
-    public static Vector2D up() {
+    public Vector2D up() {
         return new Vector2D(0, 1);
     }
-    public static Vector2D down() {
+    public Vector2D down() {
         return new Vector2D(0, -1);
     }
-    public static Vector2D left() {
+    public Vector2D left() {
         return new Vector2D(-1, 0);
     }
-    public static Vector2D right() {
+    public Vector2D right() {
         return new Vector2D(1, 0);
     }
 
@@ -67,6 +67,12 @@ public class Vector2D {
     }
     public Vector2D mul(Vector2D v) {
         return new Vector2D(x * v.x, y * v.y);
+    }
+    public Vector2D scale(double s) {
+        return this.mul(s);
+    }
+    public Vector2D scale(Vector2D v) {
+        return this.mul(v);
     }
     public Vector2D negate() {
         return new Vector2D(-x, -y);
@@ -185,5 +191,11 @@ public class Vector2D {
     }
     public Vector2D random(Vector2D min, Vector2D max) {
         return new Vector2D(Math.random() * (max.x - min.x) + min.x, Math.random() * (max.y - min.y) + min.y);
+    }
+    public Vector2D directionTo(Vector2D v) {
+        return v.sub(this).normalize();
+    }
+    public double toAngle() {
+        return Math.toDegrees(Math.atan2(y, x));
     }
 }

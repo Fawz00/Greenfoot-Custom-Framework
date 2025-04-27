@@ -1,9 +1,11 @@
 {
     "java.project.referencedLibraries": [
-        "c:\\Users\\fawwazhp\\Documents\\Project\\Greenfoot\\greenfoot-3.7.0.jar"
+        "lib/**/*.jar",
+        "c:\\Program Files\\Greenfoot\\lib\\*.jar"
     ],
+
     "files.exclude": {
         "**/*.ctxt": true,
-        "**/*.class": true
+        "**/*.class": true,
     }
 }
