@@ -8,6 +8,11 @@ public class ActorComponent extends Actor {
     private volatile boolean valid = true;
     private volatile List<Component> components = new Vector<Component>();
 
+    public ActorComponent() {
+        super();
+        setImage(new GreenfootImage("engine/unknown_actor.png"));
+    }
+
     // Must be synchronized to ensure that the method is not called by multiple threads at the same time
     public synchronized void act() {
         for (Component component : new Vector<>(components)) {

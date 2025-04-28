@@ -10,7 +10,6 @@ public class GF_UtilDelegate implements GreenfootUtilDelegate {
     @Override
     public Iterable<String> getSoundFiles() {
         // Misal kembalikan list kosong kalau gak perlu suara
-        System.out.println("getSoundFiles() called");
         return new ArrayList<>();
     }
 
@@ -33,8 +32,7 @@ public class GF_UtilDelegate implements GreenfootUtilDelegate {
 
     @Override
     public URL getResource(String name) {
-        URL p = getClass().getClassLoader().getResource(name);
-        return p;
+        return getClass().getClassLoader().getResource(name);
     }
 
     @Override

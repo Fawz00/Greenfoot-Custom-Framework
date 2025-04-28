@@ -1,3 +1,4 @@
+import greenfoot.Actor;
 import greenfoot.Greenfoot;
 import greenfoot.World;
 import greenfoot.core.Simulation;
@@ -30,9 +31,15 @@ public class Main {
         // Buat window setelah inisialisasi selesai
         System.out.println("Konfigurasi selesai, membuat window...");
 
-        JFrame frame = new JFrame("Greenfoot Game");
+        JFrame frame = new JFrame("Greenfoot Standalone Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
+
+        GF_KeyListener keyListener = new GF_KeyListener(WorldHandler.getInstance().getKeyboardManager());
+        GF_MouseListener mouseListener = new GF_MouseListener(WorldHandler.getInstance().getMouseManager());
+        frame.addKeyListener(keyListener);
+        frame.addMouseListener(mouseListener);
+        frame.addMouseMotionListener(mouseListener);
 
         // Panel untuk menggambar dunia
         JPanel panel = new JPanel() {
@@ -46,7 +53,7 @@ public class Main {
                 int worldHeight = world.getHeight();
 
                 if (worldWidth <= 0 || worldHeight <= 0) {
-                    System.err.println("Dunia ukuran invalid: " + worldWidth + "x" + worldHeight);
+                    System.err.println("Invalid world size: " + worldWidth + "x" + worldHeight);
                     return;
                 }
 
@@ -61,6 +68,7 @@ public class Main {
 
         frame.pack();
         frame.setLocationRelativeTo(null);
+        frame.setFocusable(true);
         frame.setVisible(true);
         System.out.println("Frame visible: " + frame.isVisible());
 
@@ -68,6 +76,7 @@ public class Main {
         Thread gameLoopThread = new Thread(() -> {
             while (true) {
                 world.act();
+                world.getObjects(Actor.class).forEach(Actor::act);
 
                 // Render ulang dunia ke JFrame
                 panel.repaint();

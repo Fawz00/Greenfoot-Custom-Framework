@@ -9,6 +9,8 @@ public class Enemy extends Entity {
 
     public Enemy() {
         super();
+        setImage(new GreenfootImage("Alien4.png"));
+
         eventManager = new C_EventManager(
             new EventListener() {
                 @Override
