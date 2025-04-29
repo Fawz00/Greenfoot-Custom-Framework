@@ -77,10 +77,10 @@ public class WorldBase extends World {
                     S_TarrainBlock currentBlock = getBlockAt(worldLocation);
                     if(currentBlock != null) bgImage.drawImage( GlobalVariables.getTileTexture("BlockTextures")[currentBlock.textureIndex[0]], (int)screenLocation.x, (int)screenLocation.y );
                 }
-                bgImage.setColor(Color.BLACK);
-                bgImage.drawRect((int)screenLocation.x, (int)screenLocation.y, tileSize, tileSize);
-                bgImage.setColor(Color.RED);
-                bgImage.drawString("\n "+(int)worldLocation.x+"\n "+(int)worldLocation.y, x + worldOffset[0]%tileSize, y + worldOffset[1]%tileSize);
+                // bgImage.setColor(Color.BLACK);
+                // bgImage.drawRect((int)screenLocation.x, (int)screenLocation.y, tileSize, tileSize);
+                // bgImage.setColor(Color.RED);
+                // bgImage.drawString("\n "+(int)worldLocation.x+"\n "+(int)worldLocation.y, x + worldOffset[0]%tileSize, y + worldOffset[1]%tileSize);
             }
         }
 

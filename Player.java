@@ -124,7 +124,7 @@ public class Player extends Entity {
         // Setup controls
         var mouse = Greenfoot.getMouseInfo();
 
-        if (mouse != null) if (mouse.getButton() == 1 && Greenfoot.mouseClicked(null)) {
+        if (mouse != null) if(mouse.getButton() == 1) {
             if (fireCooldown == 0) {
                 Bullet bullet = new Bullet();
                 getCurrentWorld().spawnActor(bullet, new Transform2D(transformComponent.getTransform()));

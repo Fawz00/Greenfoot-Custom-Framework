@@ -6,6 +6,8 @@ public class Bullet extends Entity {
 
     public Bullet() {
         super();
+        setImage("bullet.png");
+
         eventManager = new C_EventManager(
             new EventListener() {
                 public void onEvent(S_GameEvent e) {

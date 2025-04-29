@@ -1,7 +1,6 @@
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
 import greenfoot.World;
-import greenfoot.core.Simulation;
 import greenfoot.core.WorldHandler;
 import greenfoot.gui.WorldRenderer;
 import greenfoot.util.GreenfootUtil;
@@ -17,16 +16,16 @@ public class Main {
 
         GF_BlueJ_Config.forceInitializeConfig();
         WorldHandler worldHandler = GF_WorldHandler.forceInitializeWorldHandler();
-        Simulation simulation = GF_Simulation.forceInitializeSimulation(worldHandler);
+        GF_Simulation.forceInitializeSimulation(worldHandler);
 
         // Buat dunia utama
-        World world = new MainWorld();
+        WorldBase world = new MainWorld();
         world.started();
         Greenfoot.setWorld(world);
-        Greenfoot.setSpeed(60);
         Greenfoot.start();
+        Greenfoot.setSpeed(60);
 
-        simulation.start();
+        WorldRenderer worldRenderer = new WorldRenderer();
 
         // Buat window setelah inisialisasi selesai
         System.out.println("Konfigurasi selesai, membuat window...");
@@ -35,19 +34,17 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        GF_KeyListener keyListener = new GF_KeyListener(WorldHandler.getInstance().getKeyboardManager());
-        GF_MouseListener mouseListener = new GF_MouseListener(WorldHandler.getInstance().getMouseManager());
+        GF_KeyListener keyListener = new GF_KeyListener(worldHandler.getKeyboardManager());
+        GF_MouseListener mouseListener = new GF_MouseListener(worldHandler.getMouseManager());
         frame.addKeyListener(keyListener);
         frame.addMouseListener(mouseListener);
-        frame.addMouseMotionListener(mouseListener);
+        //frame.addMouseMotionListener(mouseListener);
 
         // Panel untuk menggambar dunia
         JPanel panel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-
-                WorldRenderer worldRenderer = new WorldRenderer();
 
                 int worldWidth = world.getWidth();
                 int worldHeight = world.getHeight();
@@ -74,16 +71,18 @@ public class Main {
 
         // Thread untuk menjalankan game loop
         Thread gameLoopThread = new Thread(() -> {
-            while (true) {
+            while (Thread.currentThread().isInterrupted() == false) {
+                worldHandler.getMouseManager().newActStarted();
                 world.act();
                 world.getObjects(Actor.class).forEach(Actor::act);
 
                 // Render ulang dunia ke JFrame
                 panel.repaint();
+
                 try {
-                    Thread.sleep(16); // Sekitar 60 FPS
+                    Thread.sleep(17); // Limit to ~60 FPS
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    Thread.currentThread().interrupt(); // Restore interrupted status
                 }
             }
         });
