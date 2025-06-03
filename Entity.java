@@ -1,6 +1,6 @@
 import greenfoot.*;
 
-public class Entity extends ActorBase {
+public abstract class Entity extends ActorBase {
 
     public Entity() {
         super();

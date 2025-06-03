@@ -3,7 +3,7 @@ import java.util.Vector;
 
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class ActorComponent extends Actor {
+public abstract class ActorComponent extends Actor {
     // Must be volatile to ensure that the value is always read from memory and not from a thread cache
     private volatile boolean valid = true;
     private volatile List<Component> components = new Vector<Component>();

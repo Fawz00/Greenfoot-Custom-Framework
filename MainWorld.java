@@ -1,4 +1,3 @@
-import greenfoot.Greenfoot;
 
 public class MainWorld extends WorldBase {
 

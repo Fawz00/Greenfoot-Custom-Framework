@@ -93,11 +93,11 @@ public class Player extends Entity {
         addComponent(collision);
 
         physics = new C_Physics2D();
-        physics.setGravity(0f);
-        physics.setDrag(5f);
+        physics.setGravity(0f); // 0
+        physics.setDrag(5f); // 5
         addComponent(physics);
 
-        status = new C_EntityStatus(new S_EntityStatus(150, 20, 15, 0.05f, 0.5f));
+        status = new C_EntityStatus(new S_EntityStatus(1200, 20, 15, 0.05f, 0.5f));
         addComponent(status);
 
         lastMovement = Enumerations.Direction.RIGHT;

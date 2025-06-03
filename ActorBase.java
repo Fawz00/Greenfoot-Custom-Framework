@@ -1,6 +1,6 @@
 import greenfoot.World;
 
-public class ActorBase extends ActorComponent {
+public abstract class ActorBase extends ActorComponent {
     protected C_Transform2D transformComponent;
 
     ActorBase() {

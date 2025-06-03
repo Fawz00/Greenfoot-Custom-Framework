@@ -1,6 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class Particle extends ActorBase {
+public abstract class Particle extends ActorBase {
     private C_LifeTime lifeTime;
     private C_Animated animated;
 

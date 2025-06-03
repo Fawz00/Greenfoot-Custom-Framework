@@ -1,6 +1,5 @@
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
-import greenfoot.World;
 import greenfoot.core.WorldHandler;
 import greenfoot.gui.WorldRenderer;
 import greenfoot.util.GreenfootUtil;

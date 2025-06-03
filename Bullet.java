@@ -31,7 +31,7 @@ public class Bullet extends Entity {
 
         addComponent(lifeTime);
 
-        entityStatus = new C_EntityStatus(new S_EntityStatus(10, 75, 1, 0.5f, 1.5f));
+        entityStatus = new C_EntityStatus(new S_EntityStatus(10, 80, 1, 0.5f, 1.5f));
         addComponent(entityStatus);
     }
 
@@ -39,7 +39,7 @@ public class Bullet extends Entity {
         super.act();
         if(getWorld() == null) return;
 
-        transformComponent.moveForward(10);
+        transformComponent.moveForward(20f);
 
         // Set collision with the Entity
         Entity other = (Entity)getOneIntersectingObject(Entity.class);
