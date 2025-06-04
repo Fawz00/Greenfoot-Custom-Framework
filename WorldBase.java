@@ -66,8 +66,8 @@ public abstract class WorldBase extends World {
         // Draw background with infinite scrolling effect
         GreenfootImage textureMap = GlobalVariables.getTexture("WorldMap");
 
-        bgImage.setColor(Color.CYAN);
-        bgImage.fill();
+        // bgImage.setColor(Color.CYAN);
+        // bgImage.fill();
         for(int x = -tileSize; x < screen[0]+tileSize; x += tileSize) {
             for(int y = -tileSize; y < screen[1]+tileSize; y += tileSize) {
                 Vector2D screenLocation = new Vector2D(x + worldOffset[0]%tileSize, y + worldOffset[1]%tileSize);
