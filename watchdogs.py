@@ -5,8 +5,8 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 # Path ke folder proyek Greenfoot
-GREENFOOT_PROJECT_PATH = "C:/Users/fawwazhp/Documents/Project/Greenfoot/星の秘密を求めるカギよ、開拓者たちに真なる祝福を。"
-GAME_PACKAGE = "greenfoot_game"
+GREENFOOT_PROJECT_PATH = "C:/Users/fawwazhp/Documents/Project/Greenfoot/HoshiKagi"
+GAME_PACKAGE = "src"
 SRC_FOLDER = os.path.join(GREENFOOT_PROJECT_PATH, "src")
 
 class GreenfootSyncHandler(FileSystemEventHandler):
@@ -43,8 +43,19 @@ class GreenfootSyncHandler(FileSystemEventHandler):
 
         print(f"📄 {filename} telah disalin ke {dest_path} (package & local import dihapus)")
 
+def initial_sync():
+    """Sinkronisasi semua file .java di folder SRC_FOLDER saat startup."""
+    for root, _, files in os.walk(SRC_FOLDER):
+        for file in files:
+            if file.endswith(".java"):
+                full_path = os.path.join(root, file)
+                GreenfootSyncHandler().sync_file(full_path)
 
 if __name__ == "__main__":
+    # Sinkronisasi awal
+    initial_sync()
+
+    # Mulai observasi real-time
     event_handler = GreenfootSyncHandler()
     observer = Observer()
     observer.schedule(event_handler, SRC_FOLDER, recursive=True)
