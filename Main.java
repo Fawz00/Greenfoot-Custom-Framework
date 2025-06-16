@@ -3,7 +3,6 @@ import greenfoot.Greenfoot;
 import greenfoot.core.WorldHandler;
 import greenfoot.gui.WorldRenderer;
 import greenfoot.util.GreenfootUtil;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;

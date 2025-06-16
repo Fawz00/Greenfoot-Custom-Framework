@@ -16,6 +16,7 @@ public class C_EntityStatus extends Component {
         if(eventManager == null) {
             // Add a default event manager if not present
             eventManager = new C_EventManager();
+            owner.addComponent(eventManager);
         }
     }
 
@@ -54,7 +55,8 @@ public class C_EntityStatus extends Component {
             final int dmgTemp = damage;
             eventManager.safeDispatch(E_EntityStatus.class, ev -> ev.onCritHit(owner, target, dmgTemp));
         }
-        target.getComponent(C_EntityStatus.class).applyDamage(damage, owner, isCritical);
+        C_EntityStatus other = target.getComponent(C_EntityStatus.class);
+        if(other != null) other.applyDamage(damage, owner, isCritical);
     }
 
     public void healSelf(int amount) {

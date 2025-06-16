@@ -97,7 +97,7 @@ public class Player extends Entity {
         physics.setDrag(5f); // 5
         addComponent(physics);
 
-        status = new C_EntityStatus(new S_EntityStatus(1200, 20, 15, 0.05f, 0.5f));
+        status = new C_EntityStatus(new S_EntityStatus(1200, 20, 10, 0.05f, 0.5f));
         addComponent(status);
 
         lastMovement = Enumerations.Direction.RIGHT;
@@ -146,7 +146,7 @@ public class Player extends Entity {
 
         // If key shift is pressed, player will move faster
         if (Greenfoot.isKeyDown("shift")) {
-            speed = 10f;
+            speed = 6f;
         }
 
         if (Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("A")) {

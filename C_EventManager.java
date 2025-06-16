@@ -70,6 +70,12 @@ public class C_EventManager extends Component {
         } else {
             System.out.println("[EventManager] Warning: No listener found for " + clazz.getSimpleName() + " in " + owner.getClass().getSimpleName());
         }
-    }    
+    }
+    
+    @Override
+    public void remove() {
+        super.remove();
+        //clearListeners();
+    }
     
 }

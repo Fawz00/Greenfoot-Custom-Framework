@@ -1,3 +1,5 @@
+import java.util.List;
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 // Maybe the game title should be 「星影に隠された真実よ、未来を拓く者に祝福を」.
@@ -12,9 +14,12 @@ public abstract class WorldBase extends World {
     private float worldTime;
     private int frame = 0;
     private GreenfootImage bgImage;
-    private FollowCamera followCamera;
 
+    private WorldActor worldActor;
+    private FollowCamera followCamera;
     private Player player;
+
+    private C_EventManager eventManager;
 
     public WorldBase() {    
         super(screen[0], screen[1], 1, false);
@@ -37,6 +42,9 @@ public abstract class WorldBase extends World {
         GlobalVariables.addTerrainBlock(0xff0000ff, new S_TarrainBlock(new int[]{4}, "lava"));
         GlobalVariables.addTerrainBlock(0x0000ffff, new S_TarrainBlock(new int[]{5}, "water"));
 
+        worldActor = new WorldActor(this);
+        addObject(worldActor, screen[0]/2, screen[1]/2);
+
         player = new Player();
         addObject(player, screen[0]/2, screen[1]/2);
 
@@ -52,7 +60,14 @@ public abstract class WorldBase extends World {
     public void started() {
         GreenfootSound bgm = GlobalVariables.getSound("background");
         bgm.playLoop();
-        bgm.setVolume(25);
+        bgm.setVolume(15);
+
+        eventManager = worldActor.getComponent(C_EventManager.class);
+        if(eventManager == null) {
+            eventManager = new C_EventManager();
+            worldActor.addComponent(eventManager);
+        }
+
         player.transformComponent.setLocation(24, 15);
         startFrameTime = System.currentTimeMillis();
     }
@@ -120,13 +135,36 @@ public abstract class WorldBase extends World {
         }
     }
 
+    @Override
+    public void addObject(Actor actor, int x, int y) {
+        super.addObject(actor, x + worldOffset[0], y + worldOffset[1]);
+        if(eventManager != null) eventManager.safeDispatch(E_WorldEvent.class, ev -> ev.onActorAdded(actor));
+    }
+
     public void spawnActor(ActorBase actor, Vector2D location, float rotation, Vector2D scale) {
         spawnActor(actor, new Transform2D(location, rotation, scale));
     }
-
     public void spawnActor(ActorBase actor, Transform2D transform) {
         addObject(actor, 0,0);
         actor.getComponent(C_Transform2D.class).setTransform(transform);
+    }
+
+    /**
+     * Reorders the actors in the world so that their z-order matches the order of the given classes array.
+     * The first class in the array will be rendered at the back, the last at the front.
+     * Only actors of the specified classes are reordered.
+     * 
+     * @param classOrder Array of Actor classes in desired z-order.
+     */
+    public void reorderActors(Class<? extends Actor>[] classOrder) {
+        for (int i = 0; i < classOrder.length; i++) {
+            List<? extends Actor> actors = getObjects(classOrder[i]);
+            for (Actor actor : actors) {
+                setPaintOrder(classOrder[i]);
+            }
+        }
+        // Set the paint order for all classes at once, in the given order
+        setPaintOrder(classOrder);
     }
 
     public float getFPS() {
