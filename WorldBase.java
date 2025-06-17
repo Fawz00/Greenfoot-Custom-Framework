@@ -24,8 +24,11 @@ public abstract class WorldBase extends World {
     public WorldBase() {    
         super(screen[0], screen[1], 1, false);
 
+        worldOffset = new int[]{0, 0};
+
         // Load sounds
         GlobalVariables.loadSound("background", "bgm.wav");
+        GlobalVariables.loadSound("start_music", "gf_start.wav");
         GlobalVariables.loadSound("explode", "blast.wav");
         GlobalVariables.loadSound("hit", "hit.wav");
         GlobalVariables.loadSound("fire_ammo", "ammo.wav");
@@ -41,6 +44,13 @@ public abstract class WorldBase extends World {
         GlobalVariables.addTerrainBlock(0x7f7f7fff, new S_TarrainBlock(new int[]{3}, "stone_brick", true));
         GlobalVariables.addTerrainBlock(0xff0000ff, new S_TarrainBlock(new int[]{4}, "lava"));
         GlobalVariables.addTerrainBlock(0x0000ffff, new S_TarrainBlock(new int[]{5}, "water"));
+        GlobalVariables.addTerrainBlock(0x035820ff, new S_TarrainBlock(new int[]{12}, "tallgrass"));
+        GlobalVariables.addTerrainBlock(0xff00f4ff, new S_TarrainBlock(new int[]{6}, "fence", true));
+        GlobalVariables.addTerrainBlock(0x95008fff, new S_TarrainBlock(new int[]{8}, "fence", true));
+        GlobalVariables.addTerrainBlock(0xe96fe4ff, new S_TarrainBlock(new int[]{7}, "fence", true));
+        GlobalVariables.addTerrainBlock(0x42003fff, new S_TarrainBlock(new int[]{9}, "fence", true));
+        GlobalVariables.addTerrainBlock(0xca00c1ff, new S_TarrainBlock(new int[]{10}, "fence", true));
+        GlobalVariables.addTerrainBlock(0x7b0076ff, new S_TarrainBlock(new int[]{11}, "fence", true));
 
         worldActor = new WorldActor(this);
         addObject(worldActor, screen[0]/2, screen[1]/2);
@@ -60,7 +70,7 @@ public abstract class WorldBase extends World {
     public void started() {
         GreenfootSound bgm = GlobalVariables.getSound("background");
         bgm.playLoop();
-        bgm.setVolume(15);
+        bgm.setVolume(30);
 
         eventManager = worldActor.getComponent(C_EventManager.class);
         if(eventManager == null) {
@@ -101,7 +111,7 @@ public abstract class WorldBase extends World {
 
         // Add enemies
         if(frame % Math.max(40, (250 - ((int)(worldTime*2f)))) == 0) {
-            for(int i = 0; i < 3; i++) {
+            for(int i = 0; i < 3+(1.06*player.getComponent(C_EntityStatus.class).getStatus().level); i++) {
                 // Add enemy at the corner screen randomly
                 int x = Greenfoot.getRandomNumber(screen[0]);
                 int y = Greenfoot.getRandomNumber(screen[1]);

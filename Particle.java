@@ -9,6 +9,7 @@ public abstract class Particle extends ActorBase {
     }
     public Particle(GreenfootImage[] images, float duration, float speed) {
         super();
+        setImage("empty.png"); // Placeholder image, will be replaced by animated images
         lifeTime = new C_LifeTime(duration);
         addComponent(lifeTime);
 

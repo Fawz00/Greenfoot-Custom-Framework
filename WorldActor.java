@@ -15,7 +15,7 @@ public class WorldActor extends ActorComponent {
                 @SuppressWarnings("unchecked")
                 @Override
                 public void onActorAdded(Actor actor) {
-                    world.reorderActors(new Class[] { UIBase.class });
+                    world.reorderActors(new Class[] { UIBase.class, TileEntity.class, Entity.class });
                 }
 
                 @Override

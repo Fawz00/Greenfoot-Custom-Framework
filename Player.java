@@ -74,12 +74,24 @@ public class Player extends Entity {
                 System.out.println("Player died due to " + deathType.toString().toLowerCase() + " by " + source);
                 GlobalVariables.getSound("explode").play();
                 getCurrentWorld().spawnActor(new Blast(), transformComponent.getTransform());
+
+                Greenfoot.setWorld(new GameoverMenu());
                 destroy();
             }
 
             @Override
             public void onRevive(ActorComponent source) {
                 System.out.println("Player revived by " + source);
+            }
+
+            @Override
+            public void onGainXP(ActorComponent owner, int amount) {
+                System.out.println("Enemy gained " + amount + " XP from " + owner);
+            }
+
+            @Override
+            public void onLevelUp(ActorComponent owner) {
+                System.out.println("Enemy leveled up: " + owner);
             }
 
             @Override
@@ -112,6 +124,10 @@ public class Player extends Entity {
 
         controls();
 
+        if( getCurrentWorld().getBlockAt(transformComponent.getTransform().location).identifier.equals("lava") ) {
+            eventListener.safeDispatch(E_EntityStatus.class, ev -> ev.onDeath(this, Enumerations.DeathType.KILLED));
+        }
+
         if (fireCooldown > 0) {
             fireCooldown--;
         }
@@ -124,7 +140,7 @@ public class Player extends Entity {
         // Setup controls
         var mouse = Greenfoot.getMouseInfo();
 
-        if (mouse != null) if(mouse.getButton() == 1) {
+        if (mouse != null) if(mouse.getButton() == 1 && mouse.getActor() != this) {
             if (fireCooldown == 0) {
                 Bullet bullet = new Bullet();
                 getCurrentWorld().spawnActor(bullet, new Transform2D(transformComponent.getTransform()));
@@ -134,7 +150,7 @@ public class Player extends Entity {
                 bullet.transformComponent.setRotation((int) (angle * 180 / Math.PI));
 
                 GlobalVariables.getSound("fire_ammo").play();
-                fireCooldown = 3;
+                fireCooldown = 20;
             }
         }
 

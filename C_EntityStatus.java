@@ -63,5 +63,23 @@ public class C_EntityStatus extends Component {
         status.currentHP = Math.min(status.currentHP + amount, status.maxHP);
         eventManager.safeDispatch(E_EntityStatus.class, ev -> ev.onHeal(owner, amount));
     }
+
+    public void addXP(int amount) {
+        status.currentXP += amount;
+        if (status.currentXP >= status.maxXP) {
+            levelUp();
+        }
+        eventManager.safeDispatch(E_EntityStatus.class, ev -> ev.onGainXP(owner, amount));
+    }
+    private void levelUp() {
+        status.currentXP -= status.maxXP;
+        status.maxXP = (int)(status.maxXP * 2f); // Increase max XP by 200%
+        status.attack += 1; // Increase attack
+        status.maxHP += 2; // Increase max HP
+        status.currentHP = Math.min(status.currentHP + 60, status.maxHP); // Heal a bit on level up
+        status.level++;
+
+        eventManager.safeDispatch(E_EntityStatus.class, ev -> ev.onLevelUp(owner));
+    }
     
 }

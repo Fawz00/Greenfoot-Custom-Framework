@@ -7,6 +7,10 @@ public class S_EntityStatus extends Structure {
     public float critDamage;
     public boolean isImmortal;
 
+    public int maxXP;
+    public int currentXP;
+    public int level;
+
     public S_EntityStatus() {
         this(100, 10, 5, 10, 150, false);
     }
@@ -24,5 +28,8 @@ public class S_EntityStatus extends Structure {
         this.critRate = critRate;
         this.critDamage = critDamage;
         this.isImmortal = isImmortal;
+        this.maxXP = 100;
+        this.currentXP = 0;
+        this.level = 1;
     }
 }

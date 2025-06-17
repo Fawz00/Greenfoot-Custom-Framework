@@ -162,10 +162,12 @@ public class C_Transform2D extends Component {
     }
 
     private void testCollision() {
-        I_Collision2D collisionComponent = owner.getComponentIfImplements(I_Collision2D.class);
-        if (collisionComponent != null) {
-            if(collisionComponent.detectWorldCollision()) {
-                owner.getComponent(C_EventManager.class).dispatchEvent(Enumerations.Event.COLLIDED, new S_CollisionHit(transform.location, null, 0.0f, Enumerations.CollisionLayer.WORLD));
+        if(owner != null) {
+            I_Collision2D collisionComponent = owner.getComponentIfImplements(I_Collision2D.class);
+            if (collisionComponent != null) {
+                if(collisionComponent.detectWorldCollision()) {
+                    owner.getComponent(C_EventManager.class).dispatchEvent(Enumerations.Event.COLLIDED, new S_CollisionHit(transform.location, null, 0.0f, Enumerations.CollisionLayer.WORLD));
+                }
             }
         }
     }

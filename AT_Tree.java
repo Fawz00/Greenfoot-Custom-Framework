@@ -1,17 +1,12 @@
+import greenfoot.GreenfootImage;
 
-public class AT_Tree extends Entity {
-    private C_AABBCollision2D collision;
+public class AT_Tree extends TileEntity {
 
     public AT_Tree() {
-        super();
-        setImage("tile_entities/tree/tree0.png");
-
-        collision = new C_AABBCollision2D(new Vector2D(2f));
-        addComponent(collision);
+        super(new GreenfootImage("tile_entities/tree/tree0.png"), new C_AABBCollision2D(new Vector2D(4f)));
     }
 
     public void act() {
         super.act();
-        if(getWorld() == null) return;
     }
 }

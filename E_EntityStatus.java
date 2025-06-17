@@ -5,4 +5,6 @@ public interface E_EntityStatus extends EventListener {
     public void onHeal(ActorComponent  source, int amount);
     public void onDeath(ActorComponent source, Enumerations.DeathType deathType);
     public void onRevive(ActorComponent source);
+    public void onGainXP(ActorComponent owner, int amount);
+    public void onLevelUp(ActorComponent owner);
 }

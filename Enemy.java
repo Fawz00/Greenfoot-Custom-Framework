@@ -7,6 +7,8 @@ public class Enemy extends Entity {
     private C_CoolDown cooldown;
     private C_AABBCollision2D collision;
 
+    private Vector2D lastLocation = new Vector2D(0, 0);
+
     public Enemy() {
         super();
         setImage(new GreenfootImage("Alien4.png"));
@@ -31,6 +33,8 @@ public class Enemy extends Entity {
             @Override
             public void onDamaged(ActorComponent source, int damage, boolean isCritical) {
                 System.out.println("Enemy damaged by " + source + " for " + damage + (isCritical ? " (Critical)" : ""));
+
+                // getCurrentWorld().spawnActor( new WorldSpaceLabel("-" + damage, 0.5f, Color.RED), lastLocation );
             }
 
             @Override
@@ -51,6 +55,10 @@ public class Enemy extends Entity {
             @Override
             public void onDeath(ActorComponent source, Enumerations.DeathType deathType) {
                 System.out.println("Enemy died due to " + deathType.toString().toLowerCase() + " by " + source);
+                MainWorld world = (MainWorld)getWorld();
+                if(world != null) {
+                    world.getPlayer().getComponent(C_EntityStatus.class).addXP(10);
+                }
 
                 GlobalVariables.getSound("explode").play();
                 getCurrentWorld().spawnActor(new Blast(), transformComponent.getTransform());
@@ -60,6 +68,16 @@ public class Enemy extends Entity {
             @Override
             public void onRevive(ActorComponent source) {
                 System.out.println("Enemy revived by " + source);
+            }
+
+            @Override
+            public void onGainXP(ActorComponent owner, int amount) {
+                System.out.println("Enemy gained " + amount + " XP from " + owner);
+            }
+
+            @Override
+            public void onLevelUp(ActorComponent owner) {
+                System.out.println("Enemy leveled up: " + owner);
             }
 
             @Override
@@ -89,6 +107,8 @@ public class Enemy extends Entity {
     public void act() {
         super.act();
         if(getWorld() == null) return;
+
+        if(transformComponent != null) lastLocation = transformComponent.getLocation();
         
         // Add movement to player
         Player player = getCurrentWorld().getPlayer();

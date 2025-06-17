@@ -1,5 +1,7 @@
 import greenfoot.Actor;
 import greenfoot.Greenfoot;
+import greenfoot.World;
+import greenfoot.core.Simulation;
 import greenfoot.core.WorldHandler;
 import greenfoot.gui.WorldRenderer;
 import greenfoot.util.GreenfootUtil;
@@ -8,6 +10,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Main {
+    private static World world;
+    
     public static void main(String[] args) {
         // Inisialisasi GreenfootUtil
         GreenfootUtil.initialise(new GF_UtilDelegate());
@@ -17,7 +21,11 @@ public class Main {
         GF_Simulation.forceInitializeSimulation(worldHandler);
 
         // Buat dunia utama
-        WorldBase world = new MainWorld();
+        try {
+            world = Settings.WORLD_CLASS.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to instantiate world", e);
+        }
         world.started();
         Greenfoot.setWorld(world);
         Greenfoot.start();
@@ -70,6 +78,8 @@ public class Main {
         // Thread untuk menjalankan game loop
         Thread gameLoopThread = new Thread(() -> {
             while (Thread.currentThread().isInterrupted() == false) {
+                world = WorldHandler.getInstance().getWorld();
+
                 worldHandler.getMouseManager().newActStarted();
                 world.act();
                 world.getObjects(Actor.class).forEach(Actor::act);

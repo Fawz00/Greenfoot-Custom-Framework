@@ -24,7 +24,7 @@ public class GF_MouseListener implements MouseListener, MouseMotionListener {
     public void mouseClicked(MouseEvent e) {
         MouseButton fxButton = GF_MouseButtonMapper.mapSwingMouseButtonToFX(e.getButton());
         if (fxButton != null) {
-            gfMouseInfo.mouseClicked(e.getX(), e.getY(), fxButton, e.getClickCount());
+            gfMouseInfo.mouseClicked(e.getX()-8, e.getY()-31, fxButton, e.getClickCount());
         }
     }
 
@@ -32,7 +32,7 @@ public class GF_MouseListener implements MouseListener, MouseMotionListener {
     public void mousePressed(MouseEvent e) {
         MouseButton fxButton = GF_MouseButtonMapper.mapSwingMouseButtonToFX(e.getButton());
         if (fxButton != null) {
-            gfMouseInfo.mousePressed(e.getX(), e.getY(), fxButton);
+            gfMouseInfo.mousePressed(e.getX()-8, e.getY()-31, fxButton);
         }
     }
 
@@ -40,7 +40,7 @@ public class GF_MouseListener implements MouseListener, MouseMotionListener {
     public void mouseReleased(MouseEvent e) {
         MouseButton fxButton = GF_MouseButtonMapper.mapSwingMouseButtonToFX(e.getButton());
         if (fxButton != null) {
-            gfMouseInfo.mouseReleased(e.getX(), e.getY(), fxButton);
+            gfMouseInfo.mouseReleased(e.getX()-8, e.getY()-31, fxButton);
         }
     }
 
@@ -61,12 +61,12 @@ public class GF_MouseListener implements MouseListener, MouseMotionListener {
     public void mouseDragged(MouseEvent e) {
         MouseButton fxButton = GF_MouseButtonMapper.mapSwingMouseButtonToFX(e.getButton());
         if (fxButton != null) {
-            gfMouseInfo.mouseDragged(e.getX(), e.getY(), fxButton);
+            gfMouseInfo.mouseDragged(e.getX()-8, e.getY()-31, fxButton);
         }
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        gfMouseInfo.mouseMoved(e.getX(), e.getY());
+        gfMouseInfo.mouseMoved(e.getX()-8, e.getY()-31);
     }
 }
