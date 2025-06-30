@@ -2,7 +2,7 @@
 README
 ------------------------------------------------------------------------
 
-PROJECT TITLE: 星の秘密を求めるカギよ、開拓者たちに真なる祝福を。
+PROJECT TITLE: 伊藤の旅。
 PURPOSE OF PROJECT: Modularity concept
 VERSION: 1.0 March 2025
 HOW TO START THIS PROJECT: Open MainWorld > Run...
